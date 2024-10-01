@@ -1,7 +1,9 @@
 using System;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AuctionService.Entities;
 
+[Table("Items")]
 public class Item
 {
     public Guid Id { get; set; }
@@ -12,7 +14,7 @@ public class Item
     public int Mileage { get; set; }
     public string ImageUrl { get; set; }
 
-    #region Properties to define the relationship between out Item and its related Auction
+    #region Nav Properties to define the relationship between out Item and its related Auction
     public Auction Auction { get; set; }
     public Guid AuctionId { get; set; }
     #endregion
