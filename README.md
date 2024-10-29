@@ -39,3 +39,5 @@ mkcert -key-file carauctions.local.key -cert-file carauctions.local.crt app.cara
 127.0.0.1 id.carauctions.local app.carauctions.local api.carauctions.local
 ```
 9. You should now be able to browse to the app on https://app.carauctions.local
+
+10. Be Happy! :D
