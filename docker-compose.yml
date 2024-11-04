@@ -8,5 +8,16 @@ services:
     volumes:
       - pgdata:/var/lib/postgresql/data
 
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin_container
+    environment:
+      PGADMIN_DEFAULT_EMAIL: mayito@mayito.com
+      PGADMIN_DEFAULT_PASSWORD: abc123
+    ports:
+      - "8081:80"
+    depends_on:
+      - postgres
+
 volumes:
   pgdata:  
