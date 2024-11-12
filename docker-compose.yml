@@ -19,5 +19,16 @@ services:
     depends_on:
       - postgres
 
+  mongodb:
+    image: mongo
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=abc123
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodata:/data/db
+
 volumes:
-  pgdata:  
+  pgdata:
+  mongodata:
