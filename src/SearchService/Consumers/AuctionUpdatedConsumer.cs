@@ -16,16 +16,8 @@ public class AuctionUpdatedConsumer : IConsumer<AuctionUpdated>
     }
     public async Task Consume(ConsumeContext<AuctionUpdated> context)
     {
-        Console.WriteLine("--> Consuming auction updated: "+ context.Message.Id);
-        /*
-        await DB.Update<Author>()
-        .Match(a => a.ID == "xxxxxxx")
-        .Modify(x => x.Inc(a => a.Age, 10))
-        .Modify(x => x.Set(a => a.Name, "Brandon"))
-        .Modify(x => x.CurrentDate(a => a.ModifiedOn))
-        .ExecuteAsync();
-        */
-        await DB.Update<Item>()
+        Console.WriteLine("--> Consuming auction updated: " + context.Message.Id);
+        /*await DB.Update<Item>()
             .Match(a => a.ID == context.Message.Id)
             .Modify(x => x.Set(a => a.UpdatedAt, DateTime.UtcNow))
             .Modify(x => x.Set(a => a.Make, context.Message.Make))
@@ -33,6 +25,22 @@ public class AuctionUpdatedConsumer : IConsumer<AuctionUpdated>
             .Modify(x => x.Set(y => y.Year, context.Message.Year))
             .Modify(x => x.Set(c => c.Color, context.Message.Color))
             .Modify(x => x.Set(mil => mil.Mileage, context.Message.Mileage))
+            .ExecuteAsync();*/
+        var item = _mapper.Map<Item>(context.Message);
+        var result = await DB.Update<Item>()
+            .Match(a => a.ID == context.Message.Id)
+            .ModifyOnly(x => new
+            {
+                x.UpdatedAt,
+                x.Make,
+                x.Model,
+                x.Year,
+                x.Color,
+                x.Mileage
+            }, item)
             .ExecuteAsync();
+        
+        if (!result.IsAcknowledged)
+            throw new MessageException(typeof(AuctionUpdated), "Problem updating mongoDB");
     }
 }
