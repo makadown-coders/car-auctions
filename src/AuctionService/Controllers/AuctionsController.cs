@@ -71,17 +71,19 @@ public class AuctionsController: ControllerBase
         var auction = _mapper.Map<Auction>(auctionDto);
         // TODO: Add current user as seller
         auction.Seller = "test";
+        
         _context.Auctions.Add(auction);
+
+        var newAuction = _mapper.Map<AuctionDto>(auction);
+
+        await _publishEndpoint.Publish(_mapper.Map<AuctionCreated>(newAuction));
+
         var result =await _context.SaveChangesAsync() > 0;
 
         if (!result)
         {
             return BadRequest("Could not save changes to DB");
         }
-
-        var newAuction = _mapper.Map<AuctionDto>(auction);
-
-        await _publishEndpoint.Publish(_mapper.Map<AuctionCreated>(newAuction));
 
         return CreatedAtAction(
                         nameof(GetAuctionById),
@@ -108,8 +110,10 @@ public class AuctionsController: ControllerBase
         auction.Item.Color = updateAuctionDto.Color ?? auction.Item.Color;        
         auction.Item.Mileage = updateAuctionDto.Mileage ?? auction.Item.Mileage;
         auction.Item.Year = updateAuctionDto.Year ?? auction.Item.Year;
-
         _context.Auctions.Update(auction);
+
+        await _publishEndpoint.Publish(_mapper.Map<AuctionUpdated>(auction));
+
         var result =await _context.SaveChangesAsync() > 0;
 
         if (!result)
@@ -133,6 +137,7 @@ public class AuctionsController: ControllerBase
         // TODO: Check seller == username
 
         _context.Auctions.Remove(auction);
+        await _publishEndpoint.Publish(new AuctionDeleted { Id = id.ToString() });
         var result =await _context.SaveChangesAsync() > 0;
 
         if (!result)

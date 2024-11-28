@@ -5,6 +5,8 @@ This is the repository for the Microservices 'carsties' app created for the Udem
 
 You can see how this app was made by checking out the Udemy course for this [here](https://www.udemy.com/course/build-a-microservices-app-with-dotnet-and-nextjs-from-scratch/?couponCode=NEWCOURSEPROM) (with discount)
 
+Rabbit MQ dashboard login&pass: guest 
+
 You can run this app locally on your computer by following these instructions:
 
 1. Using your terminal or command prompt clone the repo onto your machine in a user folder 
@@ -41,3 +43,16 @@ mkcert -key-file carauctions.local.key -cert-file carauctions.local.crt app.cara
 9. You should now be able to browse to the app on https://app.carauctions.local
 
 10. Be Happy! :D
+
+
+## Ports used
+
+Auction Service 
+```
+dotnet watch --urls=http://localhost:7001/
+```
+
+Search Service
+```
+dotnet watch --urls=http://localhost:7002/
+```
