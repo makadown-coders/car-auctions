@@ -56,3 +56,8 @@ Search Service
 ```
 dotnet watch --urls=http://localhost:7002/
 ```
+
+
+## Resources
+
+https://docs.duendesoftware.com/identityserver/v7/quickstarts/0_overview/
