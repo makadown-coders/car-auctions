@@ -3,39 +3,39 @@
 
 <div class="welcome-page">
     <h1>
-        <img src="~/duende-logo.svg" class="logo">
-        Welcome to Duende IdentityServer
+        <img src="~/logo-imssb-color.png" class="logo">
+        <small>Bienvenido al Servidor de identidad</small>
         <small class="text-muted">(version @Model.Version)</small>
     </h1>
 
     <ul>
         <li>
-            IdentityServer publishes a
-            <a href="~/.well-known/openid-configuration">discovery document</a>
-            where you can find metadata and links to all the endpoints, key material, etc.
+            Identity Server publica un
+            <a href="~/.well-known/openid-configuration">documento de descubrimiento</a>
+            donde puedes encontrar metadatos y ligas a todos los endpoints, material clave, etc.
         </li>
         <li>
-            Click <a href="~/diagnostics">here</a> to see the claims for your current session.
+            Click <a href="~/diagnostics">aquí</a> para ver los claims de tu sesion actual.
         </li>
         <li>
-            Click <a href="~/grants">here</a> to manage your stored grants.
+            Click <a href="~/grants">aquí</a> para administrar tus stored grants.
         </li>
         <li>
-            Click <a href="~/serversidesessions">here</a> to view the server side sessions.
+            Click <a href="~/serversidesessions">aquí</a> para ver los server side sessions.
         </li>
         <li>
-            Click <a href="~/ciba/all">here</a> to view your pending CIBA login requests.
+            Click <a href="~/ciba/all">aquí</a> para ver tus CIBA login requests pendientes.
         </li>
         <li>
-            Here are links to the
-            <a href="https://github.com/duendesoftware/IdentityServer">source code repository</a>,
-            and <a href="https://github.com/duendesoftware/samples">ready to use samples</a>.
+            Aqui estan ligas para
+            <a href="https://github.com/duendesoftware/IdentityServer">repositorio de codigo fuente</a>,
+            y <a href="https://github.com/duendesoftware/samples">ejemplos listos para usar</a>.
         </li>
     </ul>
 
     @if(Model.License != null)
     {
-        <h2>License</h2>
+        <h2>Licencia</h2>
         <dl>
             <dt>Serial Number</dt>
             <dd>@Model.License.SerialNumber</dd>

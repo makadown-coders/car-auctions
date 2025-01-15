@@ -7,6 +7,8 @@ You can see how this app was made by checking out the Udemy course for this [her
 
 Rabbit MQ dashboard login&pass: guest 
 
+generic password used during development: Pass123$
+
 You can run this app locally on your computer by following these instructions:
 
 1. Using your terminal or command prompt clone the repo onto your machine in a user folder 
